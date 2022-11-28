@@ -1,8 +1,10 @@
+
 // Millenium Falcon
 const falcon = new Image();
-falcon.src = '../img/meatball.png';
+falcon.src = './img/falcon.webp';
 
 // Bonus
 
 
 // Enemies
+

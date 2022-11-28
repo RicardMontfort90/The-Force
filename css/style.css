@@ -5,6 +5,15 @@
 
 /* Basic styles, change according to your style */
 
+body {
+  background-color: #00000570;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+p {
+  margin: 70px 0;
+}
+
 #start-page,
 #lose-page {
   height: 600px;
@@ -15,7 +24,7 @@
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
-  border: 1px solid black;
+  border: 1px solid white;
   margin-top: 30px;
 }
 
@@ -24,14 +33,17 @@
 }
 
 canvas {
-  border: 1px solid black;
+  border: 1px solid white;
   display: block;
   margin: 0 auto;
   margin-top: 30px;
+  background-image: '../img/meatball.png';
+  background-size: cover;
   margin-bottom: 50px;
 }
 
 /* Auxiliar classes */
+
 
 .hidden {
   display: none;
