@@ -83,10 +83,10 @@ class Game {
         )
       ) {
         if (droplet.role === 'bonus') {
-          this.falcon._increase();
+          
           this.points++;
         } else if (droplet.role === 'enemies') {
-          this.falcon._decrease();
+          
           this.points--;
         }
         if (this.points < 0) {

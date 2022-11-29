@@ -27,16 +27,4 @@ class Player {
 
    }
    
-   
-    _increase() {
-      this.width = this.width + 15;
-      this.height = this.height + 15;
-      this.y = this.y - 15;
-    }
-  
-    _decrease() {
-      this.width = this.width - 15;
-      this.height = this.height - 15;
-      this.y = this.y + 15;
-    }
   }

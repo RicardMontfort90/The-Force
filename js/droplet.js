@@ -1,3 +1,4 @@
+
 class Droplet {
   constructor() {
     this.x = Math.floor(Math.random() * 0);
