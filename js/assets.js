@@ -1,26 +1,22 @@
-
 // Player: Millenium Falcon
 const falcon = new Image();
 falcon.src = './img/falcon.webp';
 
-
-// - Bonus: Yoda & Cheba
-
-// * Yoda
+// Yoda
 const yoda = new Image();
-yoda.src = '/img/yoda.jpg';
+yoda.src = './img/masterYoda.png'
 
-// * Cheba
-const cheba = new Image();
-cheba.src = '/img/chewa.jpg';
+// Chewa
+const chewa = new Image();
+chewa.src = './img/chewa.jpg';
 
-
-// - Enemies: Bad & Aste
-
-// * Bad
+// Bad
 const bad = new Image();
-bad.src = '/img/bad.webp';
+bad.src = './img/bad.webp';
 
-// * Aste
-const aste = new Image();
-aste.src = '/img/aste.webp';
+// Wall
+const wall = new Image();
+wall.src = './img/wall.jpg'
+
+// Array bonus
+const foodImages = [yoda, chewa];
