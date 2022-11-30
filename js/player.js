@@ -5,6 +5,7 @@ class Player {
       this.y = y;
       this.width = width;
       this.height = height;
+      this.fallInterval = undefined;
     }
   
     moveDown() {
@@ -27,4 +28,12 @@ class Player {
 
    }
    
+   fallInterval() {
+    this.fallInterval = setInterval(() => {
+      if (this.y > 600) {
+        clearInterval(this.fallInterval);
+      }
+      this.y = this.y + 1;
+    }, 10)
   }
+}

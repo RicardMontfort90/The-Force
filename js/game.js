@@ -6,6 +6,7 @@ class Game {
     this.points = 0;
     this.generateInterval = null;
     this.bullets = [];
+    this.healthBar = new HealthBar;
   }
 
   _generatethings() {
@@ -22,17 +23,6 @@ class Game {
   }
 
   
-  _drawBullets() {
-    this.bullets.forEach((elem) => {
-      
-       this.ctx.beginPath()
-       this.ctx.fillStyle = "black";
-       this.ctx.arc(elem.x, elem.y, elem.width, 0, 2 * Math.PI);
-       this.ctx.fill();
-       this.ctx.closePath()
-      
-    })
-  }
   
   _drawDroplets() {
     this.droplets.forEach((elem) => {
@@ -57,13 +47,11 @@ class Game {
           this.falcon.moveUp();
           break;
         case 'Space': // Bullets
-          this
+          this.bullets.shoot() ////////////////////////////////////
           break;
       }
     })
   }
-
- 
 
   _Collisions() {
     this.droplets.forEach((droplet) => {
@@ -83,13 +71,11 @@ class Game {
         )
       ) {
         if (droplet.role === 'bonus') {
-          
-          this.points++;
+          this.points++  ; // this.points++ && this.healthBar++ ???????
         } else if (droplet.role === 'enemies') {
-          
-          this.points--;
+          this.points-- ; // this.points-- && this.healthBar-- ????????
         }
-        if (this.points < 0) {
+        if (this.points < 0) { // this.points && this.healthBar ????????
           this._gameOver();
         }
         let index = this.droplets.indexOf(droplet);
@@ -104,6 +90,27 @@ class Game {
     this.ctx.fillText(`Points: ${this.points}`, 850, 50);
   }
 
+//////////////////////////////////////////////////////////////////////////////////////
+  _DrawHealthBar() {   
+    this.ctx.lineWidth = 5;
+    this.ctx.strokeStyle = "#333";
+    this.ctx.fillStyle = this.color;
+    this.ctx.fillRect(this.x, this.y, this.w, this.h);
+    this.ctx.strokeRect(this.x, this.y, this.maxWidth, this.h);
+  }
+//////////////////////////////////////////////////////////////////////////////////////
+  _drawBullets() {
+    this.bullets.forEach((elem) => {
+      
+       this.ctx.beginPath()
+       this.ctx.fillStyle = "black";
+       this.ctx.arc(elem.x, elem.y, elem.width, 0, 2 * Math.PI);
+       this.ctx.fill();
+       this.ctx.closePath()
+      
+    })
+  }
+/////////////////////////////////////////////////////////////////////////////////////
   _drawFalcon() {
     this.ctx.drawImage(this.falcon.image, this.falcon.x, this.falcon.y, this.falcon.width, this.falcon.height);
   }
@@ -124,9 +131,10 @@ class Game {
     this._clean();
     this._drawFalcon();
     this._drawDroplets();
-    this._drawBullets();
     this._Collisions();
     this._writeScore();
+    this._drawBullets();
+    this._DrawHealthBar();
     // window.requestAnimationFrame(this._update.bind(this))
     window.requestAnimationFrame(() => this._update());
   }
@@ -136,24 +144,7 @@ class Game {
     this._generatethings();
     this._assignControls();
   }
+
+  
 }
 
-
-
- //Generar bala
-
- document.addEventListener('click',()=>{
-  let bala=document.createElement('div');
-  bala.classList.add('bala');
-  bala.style.bottom=70+'px';
-  bala.style.left=(falcon.getBoundingClientRect().left+40) +'px'; 
-  body.append(bala);
-});
-
-//movimineto de disparo
-setInterval(()=>{
-    let balas = document.querySelectorAll('.bala');
-    balas.forEach(bala => {
-      bala.style.top=(bala.getBoundingClientRect().top-20) +'px';
-    })
-},100);
