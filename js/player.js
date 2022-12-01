@@ -5,6 +5,7 @@ class Player {
       this.y = y;
       this.width = width;
       this.height = height;
+      this.bullets = []
       this.fallInterval = undefined;
     }
   
@@ -24,16 +25,25 @@ class Player {
       }
     }
   
-   shoot() {
-
-   }
-   
-   fallInterval() {
-    this.fallInterval = setInterval(() => {
-      if (this.y > 600) {
-        clearInterval(this.fallInterval);
+    shoot() {
+      const newBullets = new Bullets(this.width + this.x - 10, 455 - this.height / 2, 40, 40);
+      if(newBullets.shootingDelay == false && this.bullets.length < 3) {
+        this.bullets.push(newBullets);
+        newBullets._shooting();
+        newBullets.shootingDelay = true;
+        setTimeout(() => {
+          newBullets.shootingDelay = false;
+        }, 800);
       }
-      this.y = this.y + 1;
-    }, 10)
-  }
+    }
+   
+    _fallLateral() {
+      this.fallInterval = setInterval(() => {
+        if (this.y > 600) {
+          clearInterval(this.fallInterval);
+        }
+        this.y = this.y + 5;
+      }, 0.000001)
+    }
+   
 }

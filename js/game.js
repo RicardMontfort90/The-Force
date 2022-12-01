@@ -5,8 +5,8 @@ class Game {
     this.droplets = [];
     this.points = 0;
     this.generateInterval = null;
-    this.bullets = [];
-    this.healthBar = new HealthBar;
+                  
+    this.healthBar = new HealthBar;    /////////////////////////////
   }
 
   _generatethings() {
@@ -19,7 +19,7 @@ class Game {
       newDroplet._fallLateral();
       // Add to the array
       this.droplets.push(newDroplet);
-    }, 800)
+    }, 500)
   }
 
   
@@ -47,10 +47,12 @@ class Game {
           this.falcon.moveUp();
           break;
         case 'Space': // Bullets
-          this.bullets.shoot() ////////////////////////////////////
+          this.falcon.shoot() ////////////////////////////////////
+          break;
+          default:
           break;
       }
-    })
+    });
   }
 
   _Collisions() {
@@ -73,10 +75,11 @@ class Game {
         if (droplet.role === 'bonus') {
           this.points++  ; // this.points++ && this.healthBar++ ???????
         } else if (droplet.role === 'enemies') {
-          this.points-- ; // this.points-- && this.healthBar-- ????????
+          this._gameOver() ; // this.points-- && this.healthBar-- ????????
         }
-        if (this.points < 0) { // this.points && this.healthBar ????????
-          this._gameOver();
+        
+        if (this.points > 5) {
+          this._winPage();
         }
         let index = this.droplets.indexOf(droplet);
         this.droplets.splice(index, 1);
@@ -99,17 +102,13 @@ class Game {
     this.ctx.strokeRect(this.x, this.y, this.maxWidth, this.h);
   }
 //////////////////////////////////////////////////////////////////////////////////////
-  _drawBullets() {
-    this.bullets.forEach((elem) => {
-      
-       this.ctx.beginPath()
-       this.ctx.fillStyle = "black";
-       this.ctx.arc(elem.x, elem.y, elem.width, 0, 2 * Math.PI);
-       this.ctx.fill();
-       this.ctx.closePath()
-      
-    })
-  }
+_drawBullets(){
+  this.player.bullets.forEach((bullet) => {
+   this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
+     //this.ctx.fillStyle = "black";
+     //this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+  })
+}
 /////////////////////////////////////////////////////////////////////////////////////
   _drawFalcon() {
     this.ctx.drawImage(this.falcon.image, this.falcon.x, this.falcon.y, this.falcon.width, this.falcon.height);
@@ -127,14 +126,24 @@ class Game {
     canvas.style = "display: none";
   }
 
+  _winPage() {
+    clearInterval(this.generateInterval);
+    const winPage = document.getElementById('win-page');
+    winPage.style = "display: flex";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display:none";
+   }
+
   _update() {
     this._clean();
     this._drawFalcon();
     this._drawDroplets();
     this._Collisions();
     this._writeScore();
-    this._drawBullets();
-    this._DrawHealthBar();
+    //////////////////////////////////
+    //this._drawBullets();
+    this._DrawHealthBar();  
+    //////////////////////////////////
     // window.requestAnimationFrame(this._update.bind(this))
     window.requestAnimationFrame(() => this._update());
   }

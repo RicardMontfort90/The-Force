@@ -15,8 +15,8 @@ class Droplet {
       if (this.x > 1000) {
         clearInterval(this.fallInterval);
       }
-      this.x = this.x + 1;
-    }, 0.005)
+      this.x = this.x + 3;
+    }, 3)
   }
 
   _assignRole() {
@@ -32,7 +32,7 @@ class Droplet {
     // En función del rol asigno una imagen
     // Siempre tendrá que ser llamado después del _assignRole, si no, no tiene rol
     if (this.role === 'enemies') {
-      this.image = bad;
+      this.image = malo;
     } else {
       this.image = foodImages[Math.floor(Math.random() * foodImages.length)];
     }

@@ -3,17 +3,24 @@
   padding: 0;
 }
 
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 body {
-  background-color: #00223b;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  background-image: url('../img/fondoTotal.webp');
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  overflow: hidden !important;
 }
 
 p {
   margin: 15px 0;
 }
 
-#start-page,
+
+#start-page {
+  background-image: url('../img/fondoStart.jpg');
+}
+
+/* cambia tanto página principal como lose-page*/
+#start-page,    
 #lose-page {
   height: 600px;
   width: 1000px;
@@ -27,12 +34,39 @@ p {
   margin-top: 30px;
   background: rgb(0, 34, 59);
   background: linear-gradient(0deg, rgba(0, 34, 59, 1) 0%, rgba(2, 123, 199, 1) 100%);
-  color: white;
+  color: yellow;
+  background-image: url('../img/fondoStart.jpg');
+  background-color: black;
 }
-
+/*cambia solo lose-page*/
 #lose-page {
   display: none;
+  background-image: url('../img/DS.jpeg');
+  color: red;
 }
+
+
+
+#win-page {
+  height: 600px;
+  width: 1000px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  
+
+}
+
+#win-page {
+  display: none;
+  background-image: url('../img/fondoTotal.webp');
+  color:yellow;
+  
+}
+
 
 button#start,
 button#start-again {
@@ -50,8 +84,13 @@ button#start-again:hover {
   color: white;
 }
 
+#try-again {
+  position: absolute;
+  margin: 0 -100px;
+}
+
 canvas {
-  border: 1px solid black;
+  border: none;
   display: block;
   margin: 0 auto;
   margin-top: 30px;
