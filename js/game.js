@@ -5,10 +5,12 @@ class Game {
     this.droplets = [];
     this.points = 0;
     this.generateInterval = null;
-                  
-    this.healthBar = new HealthBar;    /////////////////////////////
+    this.backgroundMusic = new Audio('audio/force.mp3');
+    this.winAudio = new Audio('audio/spaceballs.mp3');
+    this.loseAudio = new Audio('audio/tellme.mp3');
   }
 
+  
   _generatethings() {
     // Generate new droplet every second
     this.generateInterval = setInterval(() => {
@@ -19,7 +21,8 @@ class Game {
       newDroplet._fallLateral();
       // Add to the array
       this.droplets.push(newDroplet);
-    }, 500)
+      
+    }, 500) // cantidad de cosas que aparecen ( nª Pequeño =  MAS APARICIÓN)
   }
 
   
@@ -36,6 +39,8 @@ class Game {
     })
   }
 
+  
+
   _assignControls() {
     document.addEventListener('keydown', (e) => {
       console.log(e.code);
@@ -48,6 +53,7 @@ class Game {
           break;
         case 'Space': // Bullets
           this.falcon.shoot() ////////////////////////////////////
+          console.log()
           break;
           default:
           break;
@@ -78,7 +84,7 @@ class Game {
           this._gameOver() ; // this.points-- && this.healthBar-- ????????
         }
         
-        if (this.points > 5) {
+        if (this.points > 1) {
           this._winPage();
         }
         let index = this.droplets.indexOf(droplet);
@@ -93,17 +99,10 @@ class Game {
     this.ctx.fillText(`Points: ${this.points}`, 850, 50);
   }
 
-//////////////////////////////////////////////////////////////////////////////////////
-  _DrawHealthBar() {   
-    this.ctx.lineWidth = 5;
-    this.ctx.strokeStyle = "#333";
-    this.ctx.fillStyle = this.color;
-    this.ctx.fillRect(this.x, this.y, this.w, this.h);
-    this.ctx.strokeRect(this.x, this.y, this.maxWidth, this.h);
-  }
+
 //////////////////////////////////////////////////////////////////////////////////////
 _drawBullets(){
-  this.player.bullets.forEach((bullet) => {
+  this.falcon.bullets.forEach((bullet) => {
    this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
      //this.ctx.fillStyle = "black";
      //this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
@@ -120,10 +119,11 @@ _drawBullets(){
 
   _gameOver() {
     clearInterval(this.generateInterval);
-    const losePage = document.getElementById('lose-page');
-    losePage.style = "display: flex";
-    const canvas = document.getElementById('canvas');
-    canvas.style = "display: none";
+    canvas.classList.add('hidden');
+    const loosePage = document.getElementById("lose-page");
+    loosePage.style = "display: block";
+    this.backgroundMusic.pause();
+    this.loseAudio.play();
   }
 
   _winPage() {
@@ -132,6 +132,9 @@ _drawBullets(){
     winPage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display:none";
+    this.backgroundMusic.pause();
+    this.winAudio.play();
+    
    }
 
   _update() {
@@ -141,8 +144,8 @@ _drawBullets(){
     this._Collisions();
     this._writeScore();
     //////////////////////////////////
-    //this._drawBullets();
-    this._DrawHealthBar();  
+    this._drawBullets();
+     
     //////////////////////////////////
     // window.requestAnimationFrame(this._update.bind(this))
     window.requestAnimationFrame(() => this._update());
@@ -152,6 +155,7 @@ _drawBullets(){
     this._update();
     this._generatethings();
     this._assignControls();
+    this.backgroundMusic.play();
   }
 
   

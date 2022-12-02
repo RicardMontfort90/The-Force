@@ -7,7 +7,7 @@ class Droplet {
     this.height = 50;
     this.role = null;
     this.image = null;
-    this.fallInterval = undefined;
+    this.fallInterval = null;
   }
 
   _fallLateral() {
@@ -16,7 +16,7 @@ class Droplet {
         clearInterval(this.fallInterval);
       }
       this.x = this.x + 3;
-    }, 3)
+    }, 4)  // velocidad de aparición ( nª MÁS PEQUEÑ0 = Mas velocidad)
   }
 
   _assignRole() {
@@ -34,7 +34,7 @@ class Droplet {
     if (this.role === 'enemies') {
       this.image = malo;
     } else {
-      this.image = foodImages[Math.floor(Math.random() * foodImages.length)];
+      this.image = bonusImages[Math.floor(Math.random() * bonusImages.length)];
     }
   }
 }

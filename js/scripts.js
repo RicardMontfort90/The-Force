@@ -4,7 +4,7 @@ window.onload = function () {
   const startPage = document.getElementById('start-page');
   const startButton = document.getElementById('start');
   const replayButton = document.getElementById('try-again');
-  const losePage = document.getElementById('lose-page');
+  const loosePage = document.getElementById('lose-page');
   
   startButton.onclick = function () {
     startPage.style = "display: none";
@@ -14,9 +14,9 @@ window.onload = function () {
   };
 
   replayButton.onclick = function () {
-    losePage.style = "display: none";
+    loosePage.style = "display: none";
     canvas.classList.remove('hidden');
     const game = new Game(ctx);
     game.start();
-  };
+  }
 }

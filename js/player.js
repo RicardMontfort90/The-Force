@@ -7,6 +7,7 @@ class Player {
       this.height = height;
       this.bullets = []
       this.fallInterval = undefined;
+      
     }
   
     moveDown() {
@@ -26,18 +27,19 @@ class Player {
     }
   
     shoot() {
-      const newBullets = new Bullets(this.width + this.x - 10, 455 - this.height / 2, 40, 40);
-      if(newBullets.shootingDelay == false && this.bullets.length < 3) {
+      const newBullets = new Bullets(this.x, this.y + (this.height / 2), 40, 40);
+      /*if(newBullets.shootingDelay == false && this.bullets.length < 3) {
         this.bullets.push(newBullets);
         newBullets._shooting();
         newBullets.shootingDelay = true;
         setTimeout(() => {
           newBullets.shootingDelay = false;
         }, 800);
-      }
+      }*/
+      //Que cada bulllet nova s'introdueixi a l'array de bullets 
     }
    
-    _fallLateral() {
+    /*_fallLateral() {
       this.fallInterval = setInterval(() => {
         if (this.y > 600) {
           clearInterval(this.fallInterval);
@@ -45,5 +47,6 @@ class Player {
         this.y = this.y + 5;
       }, 0.000001)
     }
+    */
    
 }

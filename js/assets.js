@@ -19,7 +19,7 @@ const wall = new Image();
 wall.src = './img/wall.jpg';
 
 // Array bonus
-const foodImages = [yoda, chewacca];
+const bonusImages = [yoda, chewacca];
 
 // Bullet
 const bullet = new Image();
