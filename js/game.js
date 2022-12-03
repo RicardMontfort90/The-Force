@@ -5,8 +5,8 @@ class Game {
     this.droplets = [];
     this.points = 0;
     this.generateInterval = null;
-    this.backgroundMusic = new Audio('audio/force.mp3');
-    this.winAudio = new Audio('audio/spaceballs.mp3');
+    this.backgroundMusic = new Audio('audio/game.mp3');
+    this.winAudio = new Audio('audio/win.mp3');
     this.loseAudio = new Audio('audio/tellme.mp3');
   }
 
