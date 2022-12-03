@@ -12,11 +12,4 @@ window.onload = function () {
     const game = new Game(ctx);
     game.start();
   };
-
-  replayButton.onclick = function () {
-    loosePage.style = "display: none";
-    canvas.classList.remove('hidden');
-    const game = new Game(ctx);
-    game.start();
-  }
 }

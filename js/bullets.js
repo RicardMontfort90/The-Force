@@ -1,18 +1,19 @@
-class Bullets {
-    constructor(x, y) {
-        this.image = bullet;
+class Bullet {
+    constructor (x, y) {
         this.x = x;
         this.y = y;
         this.width = 20;
         this.height = 20;
-        this.shootingInterval = undefined;
-        this.shootingDelay = false;
+        this.shootInterval = undefined;
+        this.image = bullet;
     }
 
-     _shooting() {
-         this.shootingInterval = setInterval(() => {
-             this.x = this.x - 5;
-         }, 20);
-     }
-
+    _shootBullet () {
+        this.shootInterval = setInterval(() => {
+            if (this.x < -15) {
+                clearInterval(this.shootInterval);
+            } 
+                this.x = this.x - 12;
+        }, 5);
+    }
 }

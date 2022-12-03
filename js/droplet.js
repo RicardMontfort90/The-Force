@@ -25,7 +25,7 @@ class Droplet {
       this.role = 'enemies';
     } else {
       this.role = 'bonus';
-    }
+    } 
   }
 
   _assignImage() {

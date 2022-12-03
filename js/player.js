@@ -7,7 +7,6 @@ class Player {
       this.height = height;
       this.bullets = []
       this.fallInterval = undefined;
-      
     }
   
     moveDown() {
@@ -27,7 +26,9 @@ class Player {
     }
   
     shoot() {
-      const newBullets = new Bullets(this.x, this.y + (this.height / 2), 40, 40);
+      const newBullet = new Bullet(this.x, this.y + (this.height / 2));
+      this.bullets.push(newBullet);
+      newBullet._shootBullet();
       /*if(newBullets.shootingDelay == false && this.bullets.length < 3) {
         this.bullets.push(newBullets);
         newBullets._shooting();

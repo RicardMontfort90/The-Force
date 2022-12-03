@@ -42,7 +42,7 @@ p {
 #lose-page {
   display: none;
   background-image: url('../img/DS.jpeg');
-  color: red;
+  color: rgb(0, 255, 153);
 }
 
 

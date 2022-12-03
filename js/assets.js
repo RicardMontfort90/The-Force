@@ -18,10 +18,12 @@ malo.src = './img/malo.png';
 const wall = new Image();
 wall.src = './img/wall.jpg';
 
-// Array bonus
-const bonusImages = [yoda, chewacca];
-
 // Bullet
 const bullet = new Image();
 bullet.src = './img/bullet.png';
+
+// Array bonus
+const bonusImages = [yoda, chewacca, ];
+
+
 

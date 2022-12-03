@@ -8,19 +8,25 @@ class Game {
     this.backgroundMusic = new Audio('audio/game.mp3');
     this.winAudio = new Audio('audio/win.mp3');
     this.loseAudio = new Audio('audio/tellme.mp3');
+    this.bonus = new Audio('audio/bonus.mp3');
+    this.winCondition = 5;
+    
   }
 
   
   _generatethings() {
     // Generate new droplet every second
     this.generateInterval = setInterval(() => {
-      const newDroplet = new Droplet();
-      // Apply effects
-      newDroplet._assignRole();
-      newDroplet._assignImage();
-      newDroplet._fallLateral();
-      // Add to the array
-      this.droplets.push(newDroplet);
+      if (this.points < this.winCondition) {
+        const newDroplet = new Droplet();
+        // Apply effects
+        newDroplet._assignRole();
+        newDroplet._assignImage();
+        newDroplet._fallLateral();
+        // Add to the array
+        this.droplets.push(newDroplet);
+      }
+    
       
     }, 500) // cantidad de cosas que aparecen ( nª Pequeño =  MAS APARICIÓN)
   }
@@ -51,9 +57,9 @@ class Game {
         case 'ArrowUp':
           this.falcon.moveUp();
           break;
-        case 'Space': // Bullets
-          this.falcon.shoot() ////////////////////////////////////
-          console.log()
+        case 'Space': 
+          this.falcon.shoot() 
+          console.log(this.falcon.bullets)
           break;
           default:
           break;
@@ -77,14 +83,16 @@ class Game {
           this.falcon.y + this.falcon.height >= droplet.y && this.falcon.y + this.falcon.height <= droplet.y + droplet.height ||
           droplet.y >= this.falcon.y && droplet.y <= this.falcon.y + this.falcon.height
         )
-      ) {
-        if (droplet.role === 'bonus') {
-          this.points++  ; // this.points++ && this.healthBar++ ???????
+      ) { 
+        if (droplet.role === 'bonus') { this.bonus.play();
+          this.points++  ;
+           // this.points++ && this.healthBar++ ???????
         } else if (droplet.role === 'enemies') {
           this._gameOver() ; // this.points-- && this.healthBar-- ????????
         }
         
-        if (this.points > 1) {
+        
+        if (this.points === this.winCondition) {
           this._winPage();
         }
         let index = this.droplets.indexOf(droplet);
@@ -93,6 +101,35 @@ class Game {
     })
   }
 
+
+  _checkEnemyCollision() {
+    this.droplets.forEach((droplet) => {
+      this.falcon.bullets.forEach((bullet) => {
+        if (
+          (
+            // Compruebo si mi meatball está dentro de la X + width del droplet
+            bullet.x >= droplet.x && bullet.x <= droplet.x + droplet.width ||
+            bullet.x + bullet.width >= droplet.x && bullet.x + bullet.width <= droplet.x + droplet.width ||
+            // Incluso si mi meatball es más grande que el droplet
+            droplet.x >= bullet.x && droplet.x <= bullet.x + bullet.width
+          ) &&
+          (
+            // Lo mismo con el eje Y
+            bullet.y >= droplet.y && bullet.y <= droplet.y + droplet.height ||
+            bullet.y + bullet.height >= droplet.y && bullet.y + bullet.height <= droplet.y + droplet.height ||
+            droplet.y >= bullet.y && droplet.y <= bullet.y + bullet.height
+          )
+         ) 
+         {
+          let index = this.droplets.indexOf(droplet);
+          this.droplets.splice(index, 1);
+        }
+      })
+    })
+  }
+
+
+
   _writeScore() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "20px Verdana";
@@ -100,7 +137,6 @@ class Game {
   }
 
 
-//////////////////////////////////////////////////////////////////////////////////////
 _drawBullets(){
   this.falcon.bullets.forEach((bullet) => {
    this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
@@ -108,7 +144,7 @@ _drawBullets(){
      //this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
   })
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
   _drawFalcon() {
     this.ctx.drawImage(this.falcon.image, this.falcon.x, this.falcon.y, this.falcon.width, this.falcon.height);
   }
@@ -134,7 +170,7 @@ _drawBullets(){
     canvas.style = "display:none";
     this.backgroundMusic.pause();
     this.winAudio.play();
-    
+    this.droplets = []
    }
 
   _update() {
@@ -143,10 +179,15 @@ _drawBullets(){
     this._drawDroplets();
     this._Collisions();
     this._writeScore();
-    //////////////////////////////////
     this._drawBullets();
-     
-    //////////////////////////////////
+    this._checkEnemyCollision();
+    
+    
+    
+    /*this._checkEnemyCollision();*/
+   
+
+
     // window.requestAnimationFrame(this._update.bind(this))
     window.requestAnimationFrame(() => this._update());
   }
