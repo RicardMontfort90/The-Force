@@ -4,10 +4,15 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+
+
 body {
   background-image: url('../img/fondoTotal.webp');
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   overflow: hidden !important;
+  cursor: url('../img/falcon.png'),
+  auto;
 }
 
 p {

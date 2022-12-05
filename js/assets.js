@@ -26,4 +26,12 @@ bullet.src = './img/bullet.png';
 const bonusImages = [yoda, chewacca, ];
 
 
+// Sounds & Audio
+
+const shootSound = new Audio();
+shootSound.src = './audio/shoot.wav'
+
+
+
+
 

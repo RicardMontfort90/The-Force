@@ -22,9 +22,10 @@ class Droplet {
   _assignRole() {
     // Una manera de hacer proporción de malos vs. buenos
     if (Math.floor(Math.random() * 10) > 1) {
-      this.role = 'enemies';
+      this.role = 'enemies'; 
     } else {
-      this.role = 'bonus';
+      this.role = 'bonus'; 
+      
     } 
   }
 
@@ -35,6 +36,7 @@ class Droplet {
       this.image = malo;
     } else {
       this.image = bonusImages[Math.floor(Math.random() * bonusImages.length)];
+      
     }
   }
 }

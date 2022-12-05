@@ -2,8 +2,8 @@ class Bullet {
     constructor (x, y) {
         this.x = x;
         this.y = y;
-        this.width = 20;
-        this.height = 20;
+        this.width = 30;
+        this.height = 30;
         this.shootInterval = undefined;
         this.image = bullet;
     }
