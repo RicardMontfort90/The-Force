@@ -1,11 +1,18 @@
-# Game name
+# The Force
 
 <!-- When you finish, add a nice screenshot of your game -->
 <!--[<img src="./img/page.png">]()-->
 
+[<img src="./img/juego.jpg">]()
+
 ## Description
 
-Game's purpose and description
+The Impire try to capture you because you are a Jedi, and you must to scape. You find the extraordinary millennium falcon, but dosen't work, so you have to use the force for move 
+spacecraft and shoot... but... do you can really shoot another one?
+
+/If you kill a cockroach you are a hero. If you kill a butterfly you are bad. Morality has aesthetic standards/
+
+- Friedrich Nietzsche
 
 ## User stories MVP
 
