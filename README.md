@@ -62,4 +62,4 @@ Minimum user stories:
 <!-- When you finish, add these links and commit -->
 
 - [Presentation slides]()
-- [Deployed game]()
+- [Deployed game](https://ricardmontfort90.github.io/The-Force/)
