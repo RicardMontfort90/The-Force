@@ -5,22 +5,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
   <title>The Force</title>
 </head>
 <body>
+  
+  
+  
   <div id="start-page">
     <main>
-     
-      <h1>MILLENNIUM FALCON </h1>
+     <div id = "text-start">
+      <h1><strong>MILLENNIUM FALCON</strong></h1>
       <h3>Instructions: Use the Force</h3>
-      <ul class="Controls: Use the Force">
-        <li>Press up arrow  ⬆ to go Up</li>
-        <li>Press down arrow  ⬇ to go Down</li>
-      </ul>
+      <h4>Press ⬆ to go Up</h4>
+      <h4>Press ⬇ to go Down</h4>
+      <h4>Press Space to shoot (if you don't have choice)</h4>
+      <p><strong>Description: take 10 allies to win. But take care, if you kill one, it's one point less</strong></p>
+    </div>
       
+      <audio id="./audio/bonus.mp3" src="./audio/bonus.mp3"></audio>
+
+      <button id="start" onmouseover="document.getElementById('./audio/game.mp3').play()">PRESS START</button>
+
+
       
-      <p>Description: kill me now 💀 </p>
-      <button id="start">PRESS START</button>
     </main>
   </div>
 
@@ -28,8 +36,8 @@
 
     <div id="lose-page">
     <main>
-      <h1>THE FORCE IS NOT WITH YOU MY FRIEND...</h1>
-      
+      <h1>GAME OVER</h1>
+      <h2>THE FORCE IS NOT WITH YOU MY FRIEND...</h2>
       <p>Llora con Jasmine un rato si quieres</p>
       
     </main>
@@ -37,11 +45,10 @@
 
   <div id="win-page">
     <main>
-      <h1>YOU WIN!🍾😄Let's go to Sonora!🥳</h1>
-      <h3>Console.log🍻(La Posion!)</h3>
-      
-      <img src="./GIFS/cheers.gif">
-      
+      <h2>YOU WIN!🍾😄Let's go to Sonora!🥳 Console.log🍻(La Posion!)</h2>
+      <h3>Author: Ricard Montfort</h3>
+      <h3>TA: Master Jedi Guillem</h3>
+      <img src="./GIFS/cheers.gif"> 
     </main>
   </div>
 

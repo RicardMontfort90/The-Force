@@ -11,13 +11,12 @@ class Game {
     this.bonus = new Audio('audio/bonus.mp3');
     this.shoot = new Audio('audio/shoot.waw');
     this.bomb = new Audio('audio/bomb.mp3');
-    this.winCondition = 5;
+    this.winCondition = 10;
     this.kills = 0;
   }
 
-  
+  // Generate new enemies and bonus every second
   _generatethings() { 
-    // Generate new droplet every second
     this.generateInterval = setInterval(() => { 
       if (this.points < this.winCondition) { 
         const newDroplet = new Droplet();
@@ -31,21 +30,7 @@ class Game {
     }, 300) // cantidad de cosas que aparecen ( nª Pequeño =  MAS APARICIÓN)
   }
 
-  
-  
-  _drawDroplets() {
-    this.droplets.forEach((elem) => {
-      // Si pintamos círculos:
-      // this.ctx.beginPath()
-      // this.ctx.fillStyle = "black";
-      // this.ctx.arc(elem.x, elem.y, elem.width, 0, 2 * Math.PI);
-      // this.ctx.fill();
-      // this.ctx.closePath()
-      this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
-    })
-  }
 
-  
 
   _assignControls() {
     document.addEventListener('keydown', (e) => {
@@ -69,22 +54,11 @@ class Game {
     });
   }
 
+
+
   _Collisions() {
     this.droplets.forEach((droplet) => {
-      if (
-        (
-          // Compruebo si mi meatball está dentro de la X + width del droplet
-          this.falcon.x >= droplet.x && this.falcon.x <= droplet.x + droplet.width ||
-          this.falcon.x + this.falcon.width >= droplet.x && this.falcon.x + this.falcon.width <= droplet.x + droplet.width ||
-          // Incluso si mi meatball es más grande que el droplet
-          droplet.x >= this.falcon.x && droplet.x <= this.falcon.x + this.falcon.width
-        ) &&
-        (
-          // Lo mismo con el eje Y
-          this.falcon.y >= droplet.y && this.falcon.y <= droplet.y + droplet.height ||
-          this.falcon.y + this.falcon.height >= droplet.y && this.falcon.y + this.falcon.height <= droplet.y + droplet.height ||
-          droplet.y >= this.falcon.y && droplet.y <= this.falcon.y + this.falcon.height
-        )
+      if ( this.falcon.x < droplet.x + droplet.width && this.falcon.x + this.falcon.width > droplet.x && this.falcon.y < droplet.y + droplet.height && this.falcon.y + this.falcon.height > droplet.y
         ){ 
         if (droplet.role === 'bonus') { this.bonus.play();
           this.points++;
@@ -100,7 +74,6 @@ class Game {
       }
     })
   }
-
 
   _checkEnemyCollision() { 
     this.droplets.forEach((droplet) => { 
@@ -119,23 +92,17 @@ class Game {
     })
   }
 
-
-
-  _writeScore() {
-    this.ctx.fillStyle = "white";
-    this.ctx.font = "20px Verdana";
-    this.ctx.fillText(`Points: ${this.points}`, 850, 50);
-    this.ctx.fillText(`Kills: ${this.kills}`, 850, 80);
+  _drawDroplets() {
+    this.droplets.forEach((elem) => {
+      this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
+    })
   }
 
-
-_drawBullets(){
-  this.falcon.bullets.forEach((bullet) => {
-   this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
-     //this.ctx.fillStyle = "black";
-     //this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-  })
-}
+  _drawBullets(){
+    this.falcon.bullets.forEach((bullet) => {
+    this.ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
+    })
+  }
 
   _drawFalcon() {
     this.ctx.drawImage(this.falcon.image, this.falcon.x, this.falcon.y, this.falcon.width, this.falcon.height);
@@ -144,6 +111,27 @@ _drawBullets(){
   _clean() {
     this.ctx.clearRect(0, 0, 1000, 600);
   }
+
+  _update() {
+    this._clean();
+    this._drawFalcon();
+    this._drawDroplets();
+    this._Collisions();
+    this._writeScore();
+    this._drawBullets();
+    this._checkEnemyCollision();
+    // window.requestAnimationFrame(this._update.bind(this))
+    window.requestAnimationFrame(() => this._update());
+  }
+
+
+  _writeScore() {
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "20px Verdana";
+    this.ctx.fillText(`Points: ${this.points}`, 850, 50);
+    this.ctx.fillText(`Dark Side: ${this.kills}`, 850, 80);
+  }
+
 
   _gameOver() {
     clearInterval(this.generateInterval);
@@ -165,17 +153,6 @@ _drawBullets(){
     this.droplets = [];
    }
 
-  _update() {
-    this._clean();
-    this._drawFalcon();
-    this._drawDroplets();
-    this._Collisions();
-    this._writeScore();
-    this._drawBullets();
-    this._checkEnemyCollision();
-    // window.requestAnimationFrame(this._update.bind(this))
-    window.requestAnimationFrame(() => this._update());
-  }
 
   start() {
     this._update();
@@ -183,6 +160,5 @@ _drawBullets(){
     this._assignControls();
     this.backgroundMusic.play();
   }
-
 }
 
