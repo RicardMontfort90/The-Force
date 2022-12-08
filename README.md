@@ -8,12 +8,12 @@ The Impire try to capture you because you are a Jedi, and you must to scape. You
 spacecraft and shoot... but... Do you can really shoot another one? Your moral code say no, but you have some feelings that say another things...
 
 
-/If you kill a cockroach you are a hero. If you kill a butterfly you are bad. Morality has aesthetic standards/
+If you crush a cockroach, you're a hero. If you crush a beautiful butterfly, you're a villain. Morals have aesthetic criteria.
 
 - Friedrich Nietzsche
 
 
-/The greatest victory is that which requires no battle/
+The greatest victory is that which requires no battle.
 
 - Sun Tzu, The Art of War
 
@@ -61,5 +61,5 @@ Minimum user stories:
 
 <!-- When you finish, add these links and commit -->
 
-- [Presentation slides]()
+- [Presentation slides](https://slides.com/ricardmontfortromero/code#/8)
 - [Deployed game](https://ricardmontfort90.github.io/The-Force/)

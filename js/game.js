@@ -34,7 +34,7 @@ class Game {
 
   _assignControls() {
     document.addEventListener('keydown', (e) => {
-      console.log(e.code);
+      
       switch (e.code) {
         case 'ArrowDown':
           this.falcon.moveDown();
